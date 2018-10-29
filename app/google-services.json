@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "754127018166",
+    "firebase_url": "https://apsara-office-world.firebaseio.com",
+    "project_id": "apsara-office-world",
+    "storage_bucket": "apsara-office-world.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754127018166:android:ba9716de00c94dd8",
+        "android_client_info": {
+          "package_name": "apsara.saxxis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754127018166-4f07r42bgal923b0vdsi1dm2c2l8a56o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apsara.saxxis",
+            "certificate_hash": "7bd8a66fdbcee05f3ffb7f4c17f4524110efd176"
+          }
+        },
+        {
+          "client_id": "754127018166-10818lss8gaic125uhd2aj1r4ft0lkr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCWOCjA4BXDKpRLMZ2AZNNcv-A_0KZw9M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754127018166-10818lss8gaic125uhd2aj1r4ft0lkr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
