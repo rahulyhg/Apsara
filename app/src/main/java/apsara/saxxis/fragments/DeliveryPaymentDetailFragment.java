@@ -134,14 +134,13 @@ public class DeliveryPaymentDetailFragment extends Fragment {
                         getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
                         getResources().getString(R.string.delivery_charge) + charges + "\n" +
                         getResources().getString(R.string.total_amount) +
-                        db_cart.getDiscountTotalAmount() + db_cart.getCouponAmount() + getResources().getString(R.string.currency) + "\n" +
+                        db_cart.getDiscountTotalAmount() + deliveryprice+ charges + "\n" +getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             } else {
                 tv_total.setText(getResources().getString(R.string.tv_cart_item) + db_cart.getCartCount() + "\n" +
                         getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
                         getResources().getString(R.string.coupon_amount) + couponValue + "\n" +
-                        getResources().getString(R.string.total_amount) + db_cart.getDiscountTotalAmount() + "\n" +
-                        getResources().getString(R.string.delivery_charge) + charges + "\n"  + getResources().getString(R.string.currency) + "\n" +
+                        getResources().getString(R.string.total_amount) + db_cart.getDiscountTotalAmount() + deliveryprice+ charges + "\n"  + getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             }
         } else {
