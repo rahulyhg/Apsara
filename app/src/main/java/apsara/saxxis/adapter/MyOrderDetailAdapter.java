@@ -70,7 +70,7 @@ public class MyOrderDetailAdapter extends CommonRecyclerAdapter<MyOrderDetail> {
                     .into(iv_img);
 
             tv_title.setText(myOrderDetail.getProduct_name());
-            tv_price.setText(myOrderDetail.getFinal_amount());
+            tv_price.setText(myOrderDetail.getPrice());
             tv_qty.setText(myOrderDetail.getQty());
         }
     }

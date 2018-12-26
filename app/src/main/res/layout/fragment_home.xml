@@ -41,7 +41,8 @@
             android:padding="5dp"
             android:paddingLeft="100dp"
             android:text="All Products GST Applicable"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone"/>
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"

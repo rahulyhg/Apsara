@@ -53,9 +53,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
     private static String TAG = EditProfileFragment.class.getSimpleName();
 
-    private EditText et_phone, et_name, et_email, et_house;
+    private EditText  et_name, et_email, et_house;
     private Button btn_update;
-    private TextView tv_phone, tv_name, tv_email, tv_house, tv_socity, btn_socity;
+    private TextView tv_phone, tv_name, tv_email, tv_house, tv_socity, btn_socity,et_phone;
     private ImageView iv_profile;
     //private Spinner sp_socity;
 

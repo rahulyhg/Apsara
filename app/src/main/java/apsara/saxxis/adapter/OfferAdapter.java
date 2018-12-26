@@ -158,9 +158,9 @@ public class OfferAdapter extends CommonRecyclerAdapter<Product> {
                         tv_price.setVisibility(View.GONE);
                         tv_discount.setVisibility(View.GONE);
                     } else {
-                        float price = Integer.parseInt(stock.getPrice_val());
-                        float discountPrice = Integer.parseInt(stock.getStrikeprice());
-                        int result = (int) Math.ceil(((price - discountPrice) / price) * 100);
+//                        int price = Integer.parseInt(stock.getPrice_val());
+//                        int discountPrice = Integer.parseInt(stock.getStrikeprice());
+//                        int result = (int) Math.ceil(((price - discountPrice) / price) * 100);
 
                         tv_discount.setVisibility(View.VISIBLE);
                         tv_discount.setText(stock.getDiscount_percentage());

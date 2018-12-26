@@ -32,19 +32,35 @@ public class APIUrls {
     public static final String KEY_PASSWORD = "password";
 
 
-    public static final String BASE_URL = "http://apsaraoffice.com/apsarapp/";
+  //  public static final String BASE_URL = "http://apsaraoffice.com/apsarapp/";
+    public static final String BASE_URL = "http://apsaraoffice.com/app/";
 
-    public static final String IMG_SLIDER_URL = BASE_URL + "uploads/sliders/";
+   // public static final String IMG_SLIDER_URL = BASE_URL + "uploads/sliders/";
 
-    public static final String ADD_IMAGE_URL1 = BASE_URL + "uploads/adds/";
+  //  public static final String ADD_IMAGE_URL1 = BASE_URL + "uploads/adds/";
 
-    public static final String IMG_Brand_URL = BASE_URL + "uploads/brands/";
+  //  public static final String IMG_Brand_URL = BASE_URL + "uploads/brands/";
 
-    public static final String IMG_CATEGORY_URL = BASE_URL + "uploads/category/";
+  //  public static final String IMG_CATEGORY_URL = BASE_URL + "uploads/category/";
 
-    public static final String IMG_PRODUCT_URL = BASE_URL + "uploads/products/";
+   // public static final String IMG_PRODUCT_URL = BASE_URL + "uploads/products/";
 
-    public static final String IMG_PROFILE_URL = BASE_URL + "uploads/profile/";
+  //  public static final String IMG_PROFILE_URL = BASE_URL + "uploads/profile/";
+
+
+//    public static final String GET_SLIDER_URL = BASE_URL + "index.php/api/get_sliders";
+
+    public static final String IMG_SLIDER_URL = "";
+
+    public static final String ADD_IMAGE_URL1 = "";
+
+    public static final String IMG_Brand_URL = "";
+
+    public static final String IMG_CATEGORY_URL = "";
+
+    public static final String IMG_PRODUCT_URL = "";
+
+    public static final String IMG_PROFILE_URL = "";
 
 
     public static final String GET_SLIDER_URL = BASE_URL + "index.php/api/get_sliders";
@@ -130,4 +146,6 @@ public class APIUrls {
     public static final String REGISTRATION_COMPLETE = "registrationComplete";
 
     public static final String PUSH_NOTIFICATION = "pushNotification";
+
+    public static final String GET_ORDER_CHARGERS = "index.php/api/get_order_charges";
 }

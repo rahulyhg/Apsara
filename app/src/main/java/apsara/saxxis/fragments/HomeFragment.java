@@ -228,7 +228,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
 
         if (fM.findFragmentByTag(OffersFragment.class.getSimpleName()) == null) {
             Fragment offersFragment = new OffersFragment();
-            fT.add(R.id.frame_layout, offersFragment, OffersFragment.class.getSimpleName())
+            fT.replace(R.id.frame_layout, offersFragment, OffersFragment.class.getSimpleName())
                     .addToBackStack(OffersFragment.class.getSimpleName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();

@@ -246,5 +246,9 @@
     <string name="gst_charge">Gst Charges(%) :</string>
     <string name="delivery_text">Charges info :</string>
     <string name="call_us">Call Us</string>
+    <string name="gst">GST:</string>
+    <string name="more">more Details</string>
+    <string name="close">Close</string>
+    <string name="finalamount">Final Amount :</string>
 
 </resources>

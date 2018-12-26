@@ -234,7 +234,7 @@ public class DeliveryFragment extends Fragment implements View.OnClickListener {
 
                     }
                 }, mYear, mMonth, mDay);
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() + (1000 * 60 * 60 * 24));
         datePickerDialog.show();
 
     }
@@ -286,7 +286,7 @@ public class DeliveryFragment extends Fragment implements View.OnClickListener {
             args.putString("location_id", location_id);
             args.putString("address", address);
             args.putString("deli_charges", deli_charges);
-            args.putString("min_charge",min_charge);
+            args.putString("min_charge", min_charge);
             fm.setArguments(args);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.frame_layout, fm)

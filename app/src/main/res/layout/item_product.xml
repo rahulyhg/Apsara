@@ -128,6 +128,25 @@
                 android:layout_marginStart="8dp"
                 android:textSize="16sp"
                 tools:text="500" />
+            <TextView
+                android:id="@+id/gst_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                tools:text="500" />
+            <TextView
+                android:id="@+id/gst_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="16sp"
+                tools:text="500" />
+
+
 
         </LinearLayout>
 

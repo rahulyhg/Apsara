@@ -6,6 +6,7 @@ import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
 import java.util.Date;
+import java.util.List;
 
 public class Coupon extends SugarRecord {
     private String Coupon_value;
@@ -14,8 +15,20 @@ public class Coupon extends SugarRecord {
     private String Coupon_title;
     private String Minimum_order_Amount;
     private String couponId;
+    private Long Id;
+
     private Date To_Date;
     private String Times_Per_user;
+
+    public Long getId ()
+    {
+        return Id;
+    }
+
+    public void setId (Long Id)
+    {
+        this.Id = Id;
+    }
 
     public Coupon() {
         super();
@@ -53,12 +66,15 @@ public class Coupon extends SugarRecord {
         Minimum_order_Amount = minimum_order_Amount;
     }
 
-    public String getCouponId() {
+
+    public String getCouponId ()
+    {
         return couponId;
     }
 
-    public void setCouponId(String id) {
-        couponId = id;
+    public void setCouponId (String couponId)
+    {
+        this.couponId = couponId;
     }
 
     public Date getFrom_Date() {

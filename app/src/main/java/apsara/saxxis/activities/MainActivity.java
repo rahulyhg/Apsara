@@ -735,4 +735,7 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     };
+    private void closefragment() {
+        this.getFragmentManager().popBackStack();
+    }
 }

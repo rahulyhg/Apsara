@@ -214,4 +214,7 @@ public interface RetrofitService {
 
     @GET(APIUrls.ADS_URL)
     Call<AdImageResponse> getAds();
+
+    @POST(APIUrls.GET_ORDER_CHARGERS)
+    Call<AdImageResponse> getChargers();
 }

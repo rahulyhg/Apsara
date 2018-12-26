@@ -1,9 +1,11 @@
 package apsara.saxxis.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -57,19 +59,16 @@ public class DeliveryPaymentDetailFragment extends Fragment {
 
     private static String TAG = DeliveryPaymentDetailFragment.class.getSimpleName();
 
-    private TextView tv_timeslot, tv_address, tv_item, tv_total;
+    private TextView tv_timeslot, tv_address, tv_item, tv_total,more;
 
     private String location_id = "";
     private String time = "";
     private String date = "";
     private String address = "";
-    private Double totalAmount;
-    private String coupon = "0";
+    private Float totalAmount;
+    private String coupon= "0";
     private String couponValue;
     private String mOTP;
-    private String deliveryprice = "";
-    //private String Gst = "";
-
 
     private DatabaseHandler db_cart;
     private SessionManagement sessionManagement;
@@ -81,6 +80,7 @@ public class DeliveryPaymentDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,7 +95,17 @@ public class DeliveryPaymentDetailFragment extends Fragment {
         //tv_item = (TextView) view.findViewById(R.id.textItems);
         //tv_subcat_total = (TextView) view.findViewById(R.id.textPrice);
         tv_total = view.findViewById(R.id.txtTotal);
-
+        more = view.findViewById(R.id.more);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MoreProductsDetailsFragment moreProductsDetailsFragment = new MoreProductsDetailsFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentManager.beginTransaction().replace(R.id.frame_layout, moreProductsDetailsFragment)
+                        .addToBackStack(null).commit();
+            }
+        });
 
         AppCompatButton btn_cod = view.findViewById(R.id.btn_cod);
         AppCompatButton btn_pay_online = view.findViewById(R.id.btn_pay_online);
@@ -107,9 +117,6 @@ public class DeliveryPaymentDetailFragment extends Fragment {
         address = getArguments().getString("address");
         String min_charge = getArguments().getString("min_charge");
 
-
-
-
         tv_timeslot.setText(String.format("%s %s", date, time));
         tv_address.setText(address);
 
@@ -117,47 +124,59 @@ public class DeliveryPaymentDetailFragment extends Fragment {
 
         if (coupons != null && coupons.size() > 0) {
             Coupon c = coupons.get(0);
-            coupon = c.getCouponId();
+            coupon = c.getCoupon_title();
             couponValue = c.getCoupon_value();
         }
+        float price = Integer.parseInt(db_cart.getDiscountTotalAmount());
+        float deliver = Integer.parseInt(String.valueOf(charges));
+        float gstprice = Float.parseFloat(db_cart.getGst());
 
-        double amount = Double.parseDouble(db_cart.getDiscountTotalAmount());
+        float amount = (int) Math.ceil(price + deliver + gstprice);;
 
-        if (amount >= Integer.parseInt(min_charge)) {
+        if (amount >= Float.parseFloat(min_charge)) {
             totalAmount = amount;
 
-
-
-
+            int result = (int) Math.ceil(price + deliver + gstprice);
             if (couponValue == null) {
                 tv_total.setText(getResources().getString(R.string.tv_cart_item) + db_cart.getCartCount() + "\n" +
-                        getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
+                        getResources().getString(R.string.finalamount) + db_cart.getDiscountTotalAmount() + "\n"+
+                        getResources().getString(R.string.gst)+ gstprice +"\n" +
                         getResources().getString(R.string.delivery_charge) + charges + "\n" +
                         getResources().getString(R.string.total_amount) +
-                        db_cart.getDiscountTotalAmount() + deliveryprice+ charges + "\n" +getResources().getString(R.string.currency) + "\n" +
+                        db_cart.getDiscountTotalAmount() + " + " + charges + " + " +  gstprice + " = " + result + getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             } else {
                 tv_total.setText(getResources().getString(R.string.tv_cart_item) + db_cart.getCartCount() + "\n" +
-                        getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
+                        getResources().getString(R.string.amount) + db_cart.getTotalAmount()+"\n" +
                         getResources().getString(R.string.coupon_amount) + couponValue + "\n" +
-                        getResources().getString(R.string.total_amount) + db_cart.getDiscountTotalAmount() + deliveryprice+ charges + "\n"  + getResources().getString(R.string.currency) + "\n" +
+                        getResources().getString(R.string.gst)+ gstprice +"\n"+
+                        getResources().getString(R.string.finalamount) + db_cart.getDiscountTotalAmount()  +"\n"+
+                        getResources().getString(R.string.delivery_charge) + charges + "\n" +
+                        getResources().getString(R.string.total_amount) +
+                        db_cart.getDiscountTotalAmount() + " + " + charges + " + " +  gstprice + " = " + result + getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             }
         } else {
             totalAmount = amount + charges;
 
+            int result = (int) Math.ceil(price + deliver);
+
             if (couponValue == null) {
                 tv_total.setText(getResources().getString(R.string.tv_cart_item) + db_cart.getCartCount() + "\n" +
-                        getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
-                        getResources().getString(R.string.total_amount) +
-                        db_cart.getDiscountTotalAmount() + " + " + deliveryprice + charges + " = " + totalAmount + " " + getResources().getString(R.string.currency) + "\n" +
+                        getResources().getString(R.string.amount) + db_cart.getTotalAmount()+"\n" +
+                        getResources().getString(R.string.gst)+ gstprice +"\n"+
+                        getResources().getString(R.string.finalamount) + db_cart.getDiscountTotalAmount()  +"\n"+
+                        getResources().getString(R.string.delivery_charge) + charges + "\n" +
+                        getResources().getString(R.string.total_amount) + db_cart.getDiscountTotalAmount() + " + " + charges + " = " + result + getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             } else {
                 tv_total.setText(getResources().getString(R.string.tv_cart_item) + db_cart.getCartCount() + "\n" +
-                        getResources().getString(R.string.amount) + db_cart.getDiscountTotalAmount() + "\n" +
+                        getResources().getString(R.string.amount) + db_cart.getTotalAmount()+"\n" +
                         getResources().getString(R.string.coupon_amount) + couponValue + "\n" +
-                        getResources().getString(R.string.total_amount) +
-                        db_cart.getDiscountTotalAmount() + " + " + deliveryprice + charges + " = " + totalAmount + " " + getResources().getString(R.string.currency) + "\n" +
+                        getResources().getString(R.string.gst)+ gstprice +"\n"+
+                        getResources().getString(R.string.finalamount) + db_cart.getDiscountTotalAmount()  + "\n"+
+                        getResources().getString(R.string.delivery_charge) + charges + "\n" +
+                        getResources().getString(R.string.total_amount) + db_cart.getDiscountTotalAmount() + " + " + charges + " = " + result  + getResources().getString(R.string.currency) + "\n" +
                         getResources().getString(R.string.saving_amount) + db_cart.getSavedAmount());
             }
         }
@@ -232,7 +251,7 @@ public class DeliveryPaymentDetailFragment extends Fragment {
             String user_id = sessionManagement.getUserDetails().get(APIUrls.KEY_ID);
 
             if (ConnectivityReceiver.isConnected()) {
-                makeAddOrderRequest(date, time, user_id, location_id, deliveryprice, paymentMode,  passArray.toString());
+                makeAddOrderRequest(date, time, user_id, location_id, coupon, paymentMode, passArray.toString());
             }
         }
     }
@@ -240,12 +259,11 @@ public class DeliveryPaymentDetailFragment extends Fragment {
     /**
      * Method to make json object request where json response starts wtih
      */
-    private void makeAddOrderRequest(final String date, final String gettime, final String userid, final String location, final String deliveryprice, final int paymentMode, final String value) {
+    private void makeAddOrderRequest(final String date, final String gettime, final String userid, final String location,final String coupon, final int paymentMode, final String value) {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Placing your order...");
         progressDialog.show();
-
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -275,7 +293,7 @@ public class DeliveryPaymentDetailFragment extends Fragment {
                                             @Override
                                             public void onPhoneVerified(String otp) {
                                                 mOTP = otp;
-                                                makeAddOrderRequest(date, gettime, userid, location, deliveryprice, paymentMode, value);
+                                                makeAddOrderRequest(date, gettime, userid, location,coupon, paymentMode, value);
                                             }
                                         });
                                         fragment.show(getChildFragmentManager(), fragment.getTag());

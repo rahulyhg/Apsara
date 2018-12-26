@@ -221,6 +221,7 @@ public class CartFragment extends Fragment implements View.OnClickListener {
                                             CouponAvailableResponse car = response.body();
 //                                            if (car.isResponce() && car.getData().getCount() > 0) {
                                             db.addCoupon(coupon);
+                                            et_coupon.setText("");
                                             //     Toast.makeText(getContext(), R.string.coupon_found, Toast.LENGTH_SHORT).show();
                                             //}
                                             //  else {
